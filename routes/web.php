@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('/admin', [AdminController::class, 'login']);
+Route::any('/admin/submit', [AdminController::class, 'login_submit']);
 
 

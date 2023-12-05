@@ -50,17 +50,17 @@
                                 <h4 class="font-size-18 text-muted mt-2 text-center">Welcome Back !</h4>
                                 <p class="text-muted text-center mb-4">Sign in to continue to Fonik.</p>
 
-                                <form class="form-horizontal" action="index.html">
-
+                                <form class="form-horizontal" action="{{url('/admin/submit')}}" method="post">
+                                @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="username">Username</label>
-                                        <input type="text" class="form-control" id="username"
+                                        <input type="text" class="form-control" name="email" id="username"
                                             placeholder="Enter username">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label" for="userpassword">Password</label>
-                                        <input type="password" class="form-control" id="userpassword"
+                                        <input type="password" class="form-control" name="password" id="userpassword"
                                             placeholder="Enter password">
                                     </div>
 
