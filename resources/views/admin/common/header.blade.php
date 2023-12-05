@@ -224,7 +224,7 @@
                         <a class="dropdown-item" href="#"><i class="dripicons-lock font-size-16 align-middle me-2"></i> Lock
                             screen</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="dripicons-exit font-size-16 align-middle me-2"></i>
+                        <a class="dropdown-item" href="{{url('/admin/logout')}}"><i class="dripicons-exit font-size-16 align-middle me-2"></i>
                             Logout</a>
                     </div>
                 </div>

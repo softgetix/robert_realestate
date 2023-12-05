@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Session;
 
 class AdminController extends Controller
 {
@@ -24,14 +25,19 @@ class AdminController extends Controller
     
         $user = User::where('email', $data['email'])->first();
     
-        if ($user && Hash::check($data['password'], $user->password)) {
+        if($user && Hash::check($data['password'], $user->password)) {
             
             return view('admin.dashboard');
         } else {
-          
-            dd('hello');
+            dd('something went wrong');
         }
+    }
 
-
+    public function logout(Request $request)
+    {
+        Session::flush();
+        $request->session()->flush();
+        Auth::logout();
+        return redirect('/admin');
     }
 }

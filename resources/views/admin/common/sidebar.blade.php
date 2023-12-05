@@ -10,7 +10,7 @@
             <li class="menu-title">Main</li>
 
             <li>
-                <a href="index.html" class="waves-effect">
+                <a href="{{url('dashboard')}}" class="waves-effect">
                     <i class="dripicons-device-desktop"></i>
                     <span>Dashboard</span>
                 </a>
@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="javascript: void(0);">
+                <a href="{{url('/property')}}">
                     <i class="dripicons-mail"></i>
                     <span> Properties  </span>
                 </a>
