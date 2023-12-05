@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +23,9 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminController::class, 'login']);
 Route::any('/admin/submit', [AdminController::class, 'login_submit']);
+Route::any('/admin/logout', [AdminController::class, 'logout']);
+
+Route::get('/property', [PropertyController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'viewDashboard']);
 
 
