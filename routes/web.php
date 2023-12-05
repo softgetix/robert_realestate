@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,4 +23,4 @@ Route::get('/', function () {
 Route::get('/admin', [AdminController::class, 'login']);
 Route::any('/admin/submit', [AdminController::class, 'login_submit']);
 
-
+Route::get('/register', [CustomerController::class, 'index']);
