@@ -49,10 +49,10 @@
             <div class="mb-2">
                 <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
             </div>
-            <div class="form-check form-switch">
+            <!-- <div class="form-check form-switch">
                 <input type="checkbox" class="form-check-input theme-choice" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css" />
                 <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-            </div>
+            </div> -->
 
             <h6 class="mt-4">Select Custom Colors</h6>
             <div class="d-flex">
