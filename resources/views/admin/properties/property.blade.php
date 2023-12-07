@@ -1,48 +1,44 @@
 @include('admin.common.header')
 @include('admin.common.sidebar')
 
-
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
     <div class="main-content">
-
+      
         <div class="page-content">
             <div class="container-fluid">
-
+                <!-- <a href="{{url('/add-property')}}"><button type="button" class="btn btn-primary waves-effect waves-light">
+                    ADD PROPERTY</button></a> -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-
-                                <h4 class="card-title">Default Datatable</h4>
-                                <p class="card-title-desc">DataTables has most features enabled by default, so all you
-                                    need to do to use it with your own tables is to call the construction function:
-                                    <code>$().DataTable();</code>.
-                                </p>
-
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th>Availability</th>
                                             <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Address</th>
+                                            <th>Address 2</th>
+                                            <th>Updated</th>
+                                            <th>Created</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
+                                 
+                                    @foreach ($property as $prop)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{$prop->availability}}</td>
+                                            <td>{{$prop->name}}</td>
+                                            <td>{{$prop->address1}}</td>
+                                            <td>{{$prop->address2}}</td>
+                                            <td>{{$prop->updated_at}}</td>
+                                            <td>{{$prop->created_at}}</td>
+                                           
                                         </tr>
+                                    @endforeach    
                                     </tbody>
                                 </table>
 
@@ -53,27 +49,9 @@
                 </div>
                 <!-- end row -->
 
-               
-
             </div>
             <!-- container-fluid -->
         </div>
         <!-- End Page-content -->
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        ©
-                        <script>document.write(new Date().getFullYear())</script> Fonik<span class="d-none d-sm-inline-block"> -
-                            Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand.</span>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <!-- end main content-->
-
-</div>
-<!-- END layout-wrapper -->
-
+    @include('admin.common.footer')
