@@ -1,32 +1,10 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+@include('frontend.common.header')
 
     <!-- style.css -->
     <link href="front/css/form-css/style.css" rel="stylesheet"/>
 
     <!-- MATERIAL DESIGN ICONIC FONT -->
 	<link rel="stylesheet" href="front/fonts/material-design-iconic-font/css/material-design-iconic-font.css" />
-
-</head>
-
-
-<body data-sidebar="dark">
 
     <!-- start -->
     <div class="wrapper">
@@ -476,16 +454,14 @@
             </div>
         </form>
 	</div>
-     <!--  -->
+    <!--  -->
         <script src="{{asset('front/js/form-js/jquery-3.3.1.min.js')}}"></script>
 		
 		<!-- JQUERY STEP -->
 		<script src="{{asset('front/js/form-js/jquery.steps.js')}}"></script>
 
 		<script src="{{asset('front/js/form-js/main.js')}}"></script>
-   <!-- end -->
+    <!-- end -->
 
-   
-</body>
 
-</html>
+@include('frontend.common.footer')

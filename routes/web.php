@@ -15,7 +15,7 @@ use App\Http\Controllers\CustomerController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('frontend.index');
 });
 
 
