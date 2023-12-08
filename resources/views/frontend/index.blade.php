@@ -284,7 +284,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-center search-form">
-                            <form action="#">
+                            <form action="#" class="mx-auto">
                                 <input type="text" placeholder="Enter Email Address">
                                 <button type="submit" class="btn btn-custom">Subscribe</button>
                             </form>

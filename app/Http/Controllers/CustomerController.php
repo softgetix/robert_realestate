@@ -10,7 +10,14 @@ class CustomerController extends Controller
     {
         return view('register');
     }
+    public function investor(){
 
+        return view('frontend.properties');
+    }
+    public function property_singlepage(){
+
+        return view('frontend.property_singlepage');
+    }
     public function show($id)
     {
         // Logic to show a specific customer by ID

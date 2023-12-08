@@ -48,7 +48,7 @@
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo text-uppercase">
+                    <a href="{{url('/')}}" class="logo text-uppercase">
                         <img src="{{asset('front/images/logo-light.png')}}" alt="" class="logo-light" height="38" />
                         <img src="{{asset('front/images/logo-dark.png')}}" alt="" class="logo-dark" height="38" />
                     </a>
@@ -70,84 +70,36 @@
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li class="has-submenu">
-                            <a href="#home">Home</a>
-                            <span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="index.html">Home Default </a>
-                                </li>
-                                <li>
-                                    <a href="index-1.html"> Home Style - 1 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-2.html"> Home Style - 2 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-3.html"> Home Style - 3 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-4.html"> Home Style - 4 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-5.html"> Home Style - 5 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-6.html"> Home Style - 6 </a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="index-7.html"> Home Style - 7 </a>
-                                </li>
-                            </ul>
+                    <li class="">
+                            <a href="{{url('How_It_Works')}}">How It Works</a>
                         </li>
                         <li class="">
-                            <a href="#features">features</a>
+                            <a href="{{url('invest')}}">Invest</a>
                         </li>
                         <li class="">
-                            <a href="#pricing">Pricing</a>
+                            <a href="{{url('Portfolio')}}">Portfolio </a>
                         </li>
                         <li class="has-submenu">
-                            <a href="#">Pages</a>
+                            <a href="#">Learn More</a>
                             <span class="menu-arrow"></span>
 
                             <ul class="submenu">
                                 <li>
-                                    <a href="about.html">About Us </a>
+                                    <a href="about.html">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact Us</a>
+                                    <a href="contact.html">FAQs</a>
                                 </li>
                                 <li class="has-submenu">
-                                    <a href="services.html">Services</a>
+                                    <a href="services.html">Blog</a>
                                 </li>
                                 <li class="has-submenu">
-                                    <a href="login.html">Log In</a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="signup.html">Sign Up</a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="faq.html">FAQ</a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="job.html">Jobs</a>
-                                </li>
-                                <li class="has-submenu">
-                                    <a href="#">Sub Menu</a>
-                                    <span class="menu-arrow submenu-arrow"></span>
-                                    <ul class="submenu">
-                                        <li><a href="#">Sub Menu Item 1</a></li>
-                                        <li><a href="#">Sub Menu Item 2</a></li>
-                                    </ul>
+                                    <a href="login.html">Contact</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="">
-                            <a href="contact.html">Contact</a>
-                        </li>
-
-                        <li class="">
-                            <a href="signup.html" class="btn-custom btn-rounded">Try it free</a>
+                            <a href="#" class="btn-custom btn-rounded">Download APP</a>
                         </li>
                     </ul>
                 </div>

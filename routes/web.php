@@ -24,3 +24,7 @@ Route::get('/admin', [AdminController::class, 'login']);
 Route::any('/admin/submit', [AdminController::class, 'login_submit']);
 
 Route::get('/register', [CustomerController::class, 'index']);
+Route::get('/invest', [CustomerController::class, 'investor'])->name('properties');
+
+Route::get('/property_singlepage', [CustomerController::class, 'property_singlepage']);
+
