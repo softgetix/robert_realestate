@@ -24,6 +24,8 @@
                                             <th>Address 2</th>
                                             <th>Updated</th>
                                             <th>Created</th>
+                                            <th> Edit </th>
+                                            <th> Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,7 +38,10 @@
                                             <td>{{$prop->address2}}</td>
                                             <td>{{$prop->updated_at}}</td>
                                             <td>{{$prop->created_at}}</td>
-                                           
+                                            <!-- <td><a href="{{ url('edit-property' . $prop->id) }}">Edit</a></td> -->
+                                            <td><a href="{{ url('edit-property/' . $prop->id) }}">Edit</a></td>
+                                          
+                                            <td><a href="{{url('delete-property/' . $prop->id)}}">Delete </a></td>
                                         </tr>
                                     @endforeach    
                                     </tbody>
