@@ -6,11 +6,22 @@
 
 <style>
     #property_singlepage .head {font-size: 18px;}
-    #property_singlepage .head a{color:black;}
-    #property_singlepage .head a:hover{color:blue;}
+    #property_singlepage .head a {color:black;}
+    #property_singlepage .head a:hover {color:blue;}
     .head a::before {content: '\2190';margin-right: 5px;}
 
     .slider-image {width: 100%;height: 425px;object-fit: cover;}
+
+    .property-basic-list {display:flex;justify-content: flex-start;column-gap:30px;}
+
+    .box_shadow {box-shadow: 0 0px 10px 0 rgb(0 0 0 / 11%);padding: 20px;border-radius: 5px;}
+    .property-basic-flex {display: flex;justify-content: flex-start;flex-wrap: wrap;}
+
+    .OfferingExpenses {align-items: center;border-bottom: 1px solid #dcd8d7;display: flex;font-size: 16px;gap: 8px;justify-content: space-between;padding: 15px 0 0;}
+
+    @media only screen and (max-width:768px) {
+        .property-basic-list{margin-top:20px;}
+    }
 </style>
 
 <section id="property_singlepage">
@@ -21,7 +32,9 @@
                     <a href="{{route('properties')}}">View More Investments</a>
                 </div>
             </div>
-            <div class="col-12 col-md-8">
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 order-2 order-md-1">
                 <div class="slider">
                     <!-- Carousel -->
                     <div id="demo" class="carousel slide" data-bs-ride="carousel">
@@ -57,7 +70,7 @@
                 </div>
             </div>
             
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 order-1 order-md-2">
                 <div class="card" style="width:100%">
                     <div class="card-image">
                         <img class="card-img-top" src="http://localhost/robert_realestate/public/front/images/property.jpg" alt="Card image">
@@ -80,11 +93,187 @@
                 </div>
             </div> 
         </div>
-
         <!--  -->
+
         <div class="row">
             <div class="col-12 col-md-8">
-                <div class="property-faqs my-5">
+                <div class="basic-list">
+                    <ul class="property-basic-list">
+                        <li>4 bedrooms</li>
+                        <li>3 baths</li>
+                        <li>1920 Sq.Ft</li>
+                        <li>Built 2022</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="property-basic-flex box_shadow">
+                    <div class="col-6 col-md-3">
+                        <small>Property type</small>
+                        <p><b>Single family</b></p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <small>Location</small>
+                        <p><b>Omaha, Nebraska</b></p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <small>Purchase price</small>
+                        <p><b>$360,000</b></p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <small>Monthly rent</small>
+                        <p><b>$3,200</b></p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="box_shadow">
+                    <h3>About this property</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <h5>Amenities</h5>
+                    <div class="property-basic-flex">
+                        <div class="col-4 col-md-3">
+                            <img src="{{asset('front/images/garden.png')}}" width="30" height="30" />
+                            <p><b>Garden</b></p>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <img src="{{asset('front/images/school.png')}}" width="30" height="30" />
+                            <p><b>Great Schools</b></p>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <img src="{{asset('front/images/store.png')}}" width="30" height="30" />
+                            <p><b>Shopping</b></p>
+                        </div>
+                        <div class="col-4 col-md-3">
+                            <img src="{{asset('front/images/ocean.png')}}" width="30" height="30" />
+                            <p><b>Near ocean</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>    
+
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="box_shadow">
+                    <h3>Tenant status</h3>
+                    <div class="OfferingExpenses">
+                        <p>Property status</p>
+                        <p><b>Rent ready</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>First dividend date</p>
+                        <p><b>March 15, 2024</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>First dividend yield</p>
+                        <p><b>6%</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Avg time to rent</p>
+                        <p><b>15 days</b></p>
+                    </div>
+                </div>
+            </div>    
+        </div>       
+
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="box_shadow">
+                    <h3>The Market</h3>
+                    <h6 class="mt-3">Western Omaha</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    <div class="property-basic-flex">
+                        <div class="col-12">
+                            <img src="{{asset('front/images/map.png')}}" width="100%" height=" " />
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>    
+
+        <!--  -->
+   
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="box_shadow">
+                    <h3>Offering details</h3>
+                    <div class="OfferingExpenses">
+                        <p>Mortgage amount</p>
+                        <p><b>$0</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Mortgage interest rate</p>
+                        <p><b>0%</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Equity raised</p>
+                        <p><b>$0</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>IPO share price</p>
+                        <p><b>$10</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Total shares</p>
+                        <p><b>39,482</b></p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Leverage</p>
+                        <p><b>0%</b></p>
+                    </div>
+                </div>
+            </div>    
+        </div>    
+
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="box_shadow">
+                    <h3>Offering Expenses</h3>
+                    <div class="OfferingExpenses">
+                        <p>Purchase price</p>
+                        <p>$360,000</p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Improvements</p>
+                        <p>$0</p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Closing, offering & holding costs</p>
+                        <p>$16,761</p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p>Realbricks sourcing fee </p>
+                        <p>$18,068</p>
+                    </div>
+                    <div class="OfferingExpenses">
+                        <p><b>Total property cost</b></p>
+                        <p><b>$394,829</b></p>
+                    </div>
+                </div>
+            </div>    
+        </div>    
+
+        <!--  -->
+
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <div class="property-faqs my-3">
                     <h3>FAQs</h3>
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
@@ -127,6 +316,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </section>
 
