@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,7 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('frontend.index');
 });
 
 
@@ -30,10 +31,17 @@ Route::get('/dashboard', [DashboardController::class, 'viewDashboard']);
 Route::get('/property', [PropertyController::class, 'index']);
 Route::get('/add-property', [PropertyController::class, 'add_property']);
 Route::post('/submit-property', [PropertyController::class, 'submit_property']);
-//Route::post('/update-property', [PropertyController::class, 'update_property']);
+
+
+
 Route::put('/update-property/{id}', [PropertyController::class, 'update_property'])->name('update-property');
-//Route::get('/edit-property/{$id}/', [PropertyController::class, 'edit_property']);
+
 Route::get('/edit-property/{id}', [PropertyController::class, 'edit_property'])->name('edit-property');
 Route::get('/delete-property/{id}', [PropertyController::class, 'delete_property'])->name('delete-property');
 
+
+Route::get('/register', [CustomerController::class, 'index']);
+Route::get('/invest', [CustomerController::class, 'investor'])->name('properties');
+
+Route::get('/property_singlepage', [CustomerController::class, 'property_singlepage']);
 
