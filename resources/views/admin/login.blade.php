@@ -64,6 +64,12 @@
                                             placeholder="Enter password">
                                     </div>
 
+                                    @if(session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+
                                     <div class="mb-3 row mt-4">
                                         <div class="col-sm-6">
                                             <div class="form-checkbox">

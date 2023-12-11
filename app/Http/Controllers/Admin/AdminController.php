@@ -27,9 +27,9 @@ class AdminController extends Controller
     
         if($user && Hash::check($data['password'], $user->password)) {
             
-            return view('admin.dashboard');
+            return redirect('/dashboard');
         } else {
-            dd('something went wrong');
+            return back()->with('error', 'The provided credentials do not match our records.');
         }
     }
 
