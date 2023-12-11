@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 /*
@@ -16,20 +17,16 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('frontend.index');
 });
 
 
 
 Route::get('/admin', [AdminController::class, 'login']);
 Route::any('/admin/submit', [AdminController::class, 'login_submit']);
-Route::any('/admin/logout', [AdminController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'viewDashboard']);
+Route::get('/register', [CustomerController::class, 'index']);
+Route::get('/invest', [CustomerController::class, 'investor'])->name('properties');
 
-Route::get('/property', [PropertyController::class, 'index']);
-Route::get('/add-property', [PropertyController::class, 'add_property']);
-Route::post('/submit-property', [PropertyController::class, 'submit_property']);
-
-
+Route::get('/property_singlepage', [CustomerController::class, 'property_singlepage']);
 

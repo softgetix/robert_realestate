@@ -785,7 +785,7 @@ p {
 .search-form form {
     position: relative;
     max-width: 600px;
-    margin: 0px auto;
+    /* margin: 0px auto; */
 }
 
 /*================
