@@ -1,0 +1,57 @@
+@include('admin.common.header')
+@include('admin.common.sidebar')
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+      
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- <a href="{{url('/add-property')}}"><button type="button" class="btn btn-primary waves-effect waves-light">
+                    ADD PROPERTY</button></a> -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Availability</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Address 2</th>
+                                            <th>Updated</th>
+                                            <th>Created</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                 
+                                    @foreach ($property as $prop)
+                                        <tr>
+                                            <td>{{$prop->availability}}</td>
+                                            <td>{{$prop->name}}</td>
+                                            <td>{{$prop->address1}}</td>
+                                            <td>{{$prop->address2}}</td>
+                                            <td>{{$prop->updated_at}}</td>
+                                            <td>{{$prop->created_at}}</td>
+                                           
+                                        </tr>
+                                    @endforeach    
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+    @include('admin.common.footer')
