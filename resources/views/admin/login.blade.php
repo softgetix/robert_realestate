@@ -50,7 +50,7 @@
                                 <h4 class="font-size-18 text-muted mt-2 text-center">Welcome Back !</h4>
                                 <p class="text-muted text-center mb-4">Sign in to continue to Fonik.</p>
 
-                                <form class="form-horizontal" action="{{url('/admin/submit')}}" method="post">
+                                <form class="form-horizontal" action="{{route('admin.login.post')}}" method="post">
                                 @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="username">Username</label>

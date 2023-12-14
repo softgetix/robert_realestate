@@ -12,21 +12,23 @@ use Session;
 
 class AdminController extends Controller
 {
-    public function login(){
+    public function index()
+    {
         return view('admin.login');
     }
 
-    public function login_submit(Request $request){
+    public function login(Request $request)
+    {
 
         $data = $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         $user = User::where('email', $data['email'])->first();
-    
-        if($user && Hash::check($data['password'], $user->password)) {
-            
+
+        if ($user && Hash::check($data['password'], $user->password)) {
+
             return redirect('/dashboard');
         } else {
             return back()->with('error', 'The provided credentials do not match our records.');

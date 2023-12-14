@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CustomerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +23,20 @@ Route::get('/', function () {
 
 
 
-Route::get('/admin', [AdminController::class, 'login']);
-Route::any('/admin/submit', [AdminController::class, 'login_submit']);
-Route::any('/admin/logout', [AdminController::class, 'logout']);
+Route::prefix('/admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
+    Route::middleware('admin.access')->group(function () {
+        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/dashboard', [DashboardController::class, 'viewDashboard'])->name('admin.dashboard');
+    });
+});
+// Route::get('/admin', [AdminController::class, 'login']);
 
-Route::get('/dashboard', [DashboardController::class, 'viewDashboard']);
+// Route::post('/admin/submit', [AdminController::class, 'login_submit']);
+// Route::get('/admin/logout', [AdminController::class, 'logout']);
+
+
 
 Route::get('/property', [PropertyController::class, 'property']);
 Route::get('/add-property', [PropertyController::class, 'add_property']);
