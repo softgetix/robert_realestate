@@ -610,7 +610,7 @@
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Documents 1</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Documents 2</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="images[]" accept="image/*"
                                             id="example-text-input">

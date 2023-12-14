@@ -18,10 +18,12 @@
                                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th> ID </th>
                                             <th>Availability</th>
                                             <th>Name</th>
                                             <th>Address</th>
                                             <th>Address 2</th>
+                                            <th>Images</th>
                                             <th>Updated</th>
                                             <th>Created</th>
                                             <th> Edit </th>
@@ -29,13 +31,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                 
+                                    <!-- <pre>
+                                    {{print_r($property)}}
+                                    </pre> -->
                                     @foreach ($property as $prop)
+                                  
                                         <tr>
+                                            <td> {{$prop->id}}</td>
                                             <td>{{$prop->availability}}</td>
                                             <td>{{$prop->name}}</td>
                                             <td>{{$prop->address1}}</td>
                                             <td>{{$prop->address2}}</td>
+                                            <td>
+                                            <img src="{{ asset('property_documents/' . $prop->property_document_1) }}" style="width: 200px; height: 200px;">
+                                            {{$prop->property_document_1}}</td>
                                             <td>{{$prop->updated_at}}</td>
                                             <td>{{$prop->created_at}}</td>
                                             <!-- <td><a href="{{ url('edit-property' . $prop->id) }}">Edit</a></td> -->
