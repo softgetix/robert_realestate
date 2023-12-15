@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('properties_document', function (Blueprint $table) {
             $table->id();
-            $table->string('property_document', 255);
-            $table->string('document_1', 255);
+            $table->string('document_key', 255);
+            $table->string('document_value', 255);
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
             $table->timestamps();

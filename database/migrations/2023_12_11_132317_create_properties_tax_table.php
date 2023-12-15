@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('property_id')->nullable();
             $table->foreign('property_id')->references('id')->on('properties');
-            $table->string('Tax', 255);
+            $table->string('tax_key', 255);
+            $table->string('tax_value', 255);
             $table->timestamps();
         });
     }

@@ -10,5 +10,5 @@ class PropertyImageModel extends Model
     use HasFactory;
 
     protected $table = 'property_images';
-    protected $primaryKey = 'id';
+    
 }

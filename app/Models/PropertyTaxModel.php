@@ -10,5 +10,5 @@ class PropertyTaxModel extends Model
     use HasFactory;
 
     protected $table = 'property_tax';
-    protected $primaryKey = 'id';
+    
 }

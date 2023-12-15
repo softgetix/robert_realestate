@@ -54,7 +54,7 @@
                                 @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="username">Username</label>
-                                        <input type="text" class="form-control" name="email" id="username"
+                                        <input type="text" value="{{old('email')}}" class="form-control" name="email" id="username"
                                             placeholder="Enter username">
                                     </div>
 

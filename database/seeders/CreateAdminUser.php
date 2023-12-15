@@ -14,11 +14,10 @@ class CreateAdminUser extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'pawan',
+        DB::table('admins')->insert([
+            'username' => 'pawan',
             'email' => 'softgetix.test@gmail.com',
-            'password' => Hash::make('123456'),
-            'is_admin' => 1
+            'password' => Hash::make('123456')
         ]);
     }
 }

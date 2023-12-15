@@ -20,11 +20,11 @@ class PropertyController extends Controller
     {
 
 
-        $property = DB::table('property')
-            ->leftJoin('property_tax', 'property.id', '=', 'property_tax.property_id')
-            ->leftJoin('property_document', 'property.id', '=', 'property_document.property_id')
-            ->leftJoin('property_images', 'property.id', '=', 'property_images.property_id')
-            ->select('property.*', 'property_tax.Tax', 'property_document.property_document_1', 'property_images.property_images')
+        $property = DB::table('properties')
+            ->leftJoin('properties_tax', 'properties.id', '=', 'properties_tax.property_id')
+            ->leftJoin('properties_document', 'properties.id', '=', 'properties_document.property_id')
+            ->leftJoin('property_images', 'properties.id', '=', 'property_images.property_id')
+            ->select('properties.*', 'properties_tax.Tax', 'properties_document.document_1', 'property_images.property_images')
             ->get();
 
         $data['property'] = $property;

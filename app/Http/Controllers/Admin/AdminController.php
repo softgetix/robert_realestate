@@ -4,42 +4,40 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Session;
+use App\Http\Requests\Admin\AdminLoginRequest;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.login');
+        if (Auth::guard('admin')->check()) {
+            return redirect(route('admin.dashboard'));
+        } else {
+            return view('admin.login');
+        }
+
     }
 
-    public function login(Request $request)
+    public function login(AdminLoginRequest $request)
     {
 
-        $data = $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
 
-        $user = User::where('email', $data['email'])->first();
-
-        if ($user && Hash::check($data['password'], $user->password)) {
-
-            return redirect('/dashboard');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect(route('admin.dashboard'));
         } else {
-            return back()->with('error', 'The provided credentials do not match our records.');
+            return back()->with('error', 'The provided credentials do not match our records.')->withInput();
         }
     }
 
     public function logout(Request $request)
     {
-        Session::flush();
-        $request->session()->flush();
-        Auth::logout();
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
         return redirect('/admin');
     }
 }
