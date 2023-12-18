@@ -12,17 +12,32 @@ class PropertyModel extends Model
     use HasFactory;
 
     protected $table = 'properties';
+    protected $fillable = [
+        'name',
+        'description',
+        'management_company',
+        'admin_id',
+        'availability', // Add 'availability' to the fillable properties
+    ];
 
-
-    public function propertiesTax(): HasMany
+    public function propertyTax(): HasMany
     {
         return $this->hasMany('\App\Models\PropertyTaxModel', 'property_id');
+    }
+    public function propertyAddress(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyAddress', 'property_id');
     }
     public function propertyImage(): HasMany
     {
         return $this->hasMany('\App\Models\PropertyImageModel', 'property_id');
     }
-    public function propertiesDocument(): HasMany
+    public function propertyDetails(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyDetails', 'property_id');
+    }
+
+    public function propertyDocument(): HasMany
     {
         return $this->hasMany('\App\Models\PropertyTaxModel', 'property_id');
     }

@@ -6,22 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PropertyModel;
 
-class PropertyImageModel extends Model
+class PropertyAddress extends Model
 {
     use HasFactory;
-
-    protected $table = 'property_images';
-
-
+    protected $table = 'property_address';
     protected $fillable = [
-        'property_image_key',
-        'property_image_value',
-        'property_id',
+        'address_1',
+        'address_2',
+        'city',
+        'state',
+        'zip',
     ];
 
     public function propertyModel()
     {
         return $this->belongsTo(PropertyModel::class, 'property_id');
     }
-
 }

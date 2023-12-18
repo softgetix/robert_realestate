@@ -14,7 +14,7 @@ class AdminAddPropertyRequest extends FormRequest
     public function authorize(): bool
     {
         if (Auth::guard('admin')->check()) {
-            return true; 
+            return true;
         } else {
             return false;
         }
@@ -28,7 +28,11 @@ class AdminAddPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'availability' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'management_company' => 'required',
+            'property_images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', //Assuming property_images are images
         ];
     }
 }

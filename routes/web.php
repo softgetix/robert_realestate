@@ -30,28 +30,29 @@ Route::prefix('/admin')->group(function () {
     Route::middleware('admin.access')->group(function () {
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
         Route::get('/dashboard', [DashboardController::class, 'viewDashboard'])->name('admin.dashboard');
-       // new property routes
 
-        Route::resource('manage-property',ManagePropertyController::class); 
-        //property routes
-        Route::get('/property', [PropertyController::class, 'property']);
-        Route::get('/add-property', [PropertyController::class, 'add_property']);
-        Route::post('/store-property', [PropertyController::class, 'store_property']);
-        Route::get('/edit-property/{id}', [PropertyController::class, 'edit_property'])->name('edit-property');
-        Route::put('/update-property/{id}', [PropertyController::class, 'update_property'])->name('update-property');
-        Route::get('/delete-property/{id}', [PropertyController::class, 'delete_property'])->name('delete-property');
+        // new property routes
+
+        Route::resource('manage-property', ManagePropertyController::class);
+        //extra routes for working with extra data
+        Route::get('/manage-property/edit-address/{id}', [ManagePropertyController::class, 'edit_address'])->name('admin.manage-property.edit-address');
+        Route::post('/manage-property/update-address/{id}', [ManagePropertyController::class, 'update_address'])->name('admin.manage-property.update-address');
+
+
+        // edit property details
+        Route::get('/manage-property/edit-details/{id}', [ManagePropertyController::class, 'edit_property_details'])->name('admin.manage-property.edit-details');
+        Route::post('/manage-property/update-details/{id}', [ManagePropertyController::class, 'update_property_details'])->name('admin.manage-property.update-details');
+
         
+
+
+
     });
 });
 
 
 
-Route::get('/property', [PropertyController::class, 'property']);
-Route::get('/add-property', [PropertyController::class, 'add_property']);
-Route::post('/store-property', [PropertyController::class, 'store_property']);
-Route::get('/edit-property/{id}', [PropertyController::class, 'edit_property'])->name('edit-property');
-Route::put('/update-property/{id}', [PropertyController::class, 'update_property'])->name('update-property');
-Route::get('/delete-property/{id}', [PropertyController::class, 'delete_property'])->name('delete-property');
+
 
 
 Route::get('/register', [CustomerController::class, 'index']);
