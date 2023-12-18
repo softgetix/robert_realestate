@@ -28,7 +28,7 @@ class UpdatePropertyDetailsRequest extends FormRequest
             'half_baths' => 'required|integer',
             'sleeps' => 'required|integer',
             'garages' => 'required|integer',
-            'sqft' => 'required|integer',
+            'square_feets' => 'required|integer',
             'stories' => 'required|string',
             'units' => 'required|integer',
             'lot_size' => 'required|integer',
