@@ -35,15 +35,43 @@ Route::prefix('/admin')->group(function () {
 
         Route::resource('manage-property', ManagePropertyController::class);
         //extra routes for working with extra data
-        Route::get('/manage-property/edit-address/{id}', [ManagePropertyController::class, 'edit_address'])->name('admin.manage-property.edit-address');
-        Route::post('/manage-property/update-address/{id}', [ManagePropertyController::class, 'update_address'])->name('admin.manage-property.update-address');
+
+        Route::prefix('/manage-property')->group(function () {
+            Route::get('/edit-address/{id}', [ManagePropertyController::class, 'edit_address'])->name('admin.manage-property.edit-address');
+            Route::post('/update-address/{id}', [ManagePropertyController::class, 'update_address'])->name('admin.manage-property.update-address');
 
 
-        // edit property details
-        Route::get('/manage-property/edit-details/{id}', [ManagePropertyController::class, 'edit_property_details'])->name('admin.manage-property.edit-details');
-        Route::post('/manage-property/update-details/{id}', [ManagePropertyController::class, 'update_property_details'])->name('admin.manage-property.update-details');
+            // edit property details
+            Route::get('/edit-details/{id}', [ManagePropertyController::class, 'edit_property_details'])->name('admin.manage-property.edit-details');
+            Route::post('/update-details/{id}', [ManagePropertyController::class, 'update_property_details'])->name('admin.manage-property.update-details');
 
-        
+            // edit Amenities (list)
+
+            Route::get('/edit-amenities/{id}', [ManagePropertyController::class, 'edit_amenities'])->name('admin.manage-property.edit-amenities');
+
+            Route::post('/update-aminities/{id}', [ManagePropertyController::class, 'update_aminities'])->name('admin.manage-property.update-aminities');
+            // edit market details
+            Route::get('/edit-market/{id}', [ManagePropertyController::class, 'edit_market_details'])->name('admin.manage-property.edit-market');
+
+            Route::post('/update-market/{id}', [ManagePropertyController::class, 'update_market_details'])->name('admin.manage-property.update-market');
+            //edit floor plan
+            Route::get('/edit-floorplan/{id}', [ManagePropertyController::class, 'edit_floorplan'])->name('admin.manage-property.edit-floorplan');
+
+            Route::post('/update-floorplan/{id}', [ManagePropertyController::class, 'update_floorplan'])->name('admin.manage-property.update-floorplan');
+
+            // edit property extra details
+            Route::get('/edit-property-extra-details/{id}', [ManagePropertyController::class, 'edit_property_extra_details'])->name('admin.manage-property.edit-property-extra-details');
+
+            Route::get('/update-property-extra-details/{id}', [ManagePropertyController::class, 'update_property_extra_details'])->name('admin.manage-property.update-property-extra-details');
+
+        });
+
+
+
+
+
+
+
 
 
 

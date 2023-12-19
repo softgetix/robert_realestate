@@ -63,17 +63,6 @@
                                                         
 
                                                        
-                                    {{-- 
-
-                                    <div class="mb-3 row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Amenities
-                                            (list)</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" required type="text" name="amenities"
-                                                id="example-text-input">
-                                        </div>
-                                    </div> --}}
-
                                     <div class="mb-3 row">
                                         <label for="example-text-input"
                                             class="col-sm-2 col-form-label">Description</label>

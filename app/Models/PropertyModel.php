@@ -17,7 +17,7 @@ class PropertyModel extends Model
         'description',
         'management_company',
         'admin_id',
-        'availability', // Add 'availability' to the fillable properties
+        'availability',
     ];
 
     public function propertyTax(): HasMany
@@ -32,10 +32,23 @@ class PropertyModel extends Model
     {
         return $this->hasMany('\App\Models\PropertyImageModel', 'property_id');
     }
+    public function propertyAmenities(): HasMany
+    {
+        return $this->hasMany('\App\Models\PropertyAmenity', 'property_id');
+    }
     public function propertyDetails(): HasOne
     {
         return $this->hasOne('\App\Models\PropertyDetails', 'property_id');
     }
+    public function MarketDetails(): HasOne
+    {
+        return $this->hasOne('\App\Models\MarketDetails', 'property_id');
+    }
+    public function propertyFloorplan(): HasMany
+    {
+        return $this->hasMany('\App\Models\PropertyFloorplan', 'property_id');
+    }
+
 
     public function propertyDocument(): HasMany
     {

@@ -20,7 +20,7 @@
 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle arrow-none" href="{{ url('/property') }}"
+                        <a class="nav-link dropdown-toggle arrow-none" href="{{ route('manage-property.index') }}"
                             id="topnav-components" role="button">
                             <i class="dripicons-to-do me-2"></i>Property
                             <div class="arrow-down"></div>
@@ -29,7 +29,7 @@
                         <div class="dropdown-menu" aria-labelledby="topnav-components">
                             <a href="{{ route('manage-property.create') }}" class="dropdown-item">Create New
                                 Property</a>
-                            <a href="{{ url('/property') }}" class="dropdown-item">View All Property</a>
+                            <a href="{{ route('manage-property.index') }}" class="dropdown-item">View All Property</a>
 
                         </div>
                     </li>
