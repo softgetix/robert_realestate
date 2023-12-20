@@ -49,6 +49,34 @@ class PropertyModel extends Model
         return $this->hasMany('\App\Models\PropertyFloorplan', 'property_id');
     }
 
+    public function PropertyExtraDetails(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyExtraDetails', 'property_id');
+    }
+
+    public function propertyAacf(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyAacf', 'property_id');
+    }
+
+    public function propertyUrl(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyUrl', 'property_id');
+    }
+    public function propertyOffering(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyOffering', 'property_id');
+    }
+    public function propertyShare(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyShare', 'property_id');
+    }
+    public function propertyFinancialDetail(): HasOne
+    {
+        return $this->hasOne('\App\Models\PropertyFinancialDetail', 'property_id');
+    }
+
+
 
     public function propertyDocument(): HasMany
     {

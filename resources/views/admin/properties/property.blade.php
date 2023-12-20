@@ -20,7 +20,7 @@
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th> ID </th>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Availability</th>
                                         <th>Description</th>
@@ -54,14 +54,18 @@
                                                 <a href="{{ route('admin.manage-property.edit-property-extra-details', ['id' => $prop->id]) }}"
                                                     class="btn dt-button btn-outline-danger waves-effect waves-light">Extra
                                                     Details</a>
-                                                <button type="button"
-                                                    class="btn btn-outline-dark waves-effect waves-light">Dark</button>
-                                                <button type="button"
-                                                    class="btn btn-outline-pink waves-effect waves-light">Pink</button>
-                                                <button type="button"
-                                                    class="btn btn-outline-purple waves-effect waves-light">Purple</button>
-                                                <button type="button"
-                                                    class="btn btn-outline-light waves-effect waves-light">Light</button>
+                                                <a href="{{ route('admin.manage-property.edit-property-aacf', ['id' => $prop->id]) }}"
+                                                    class="btn dt-button btn-outline-dark waves-effect waves-light">AACF</a>
+                                                <a href="{{ route('admin.manage-property.edit-property-urls', ['id' => $prop->id]) }}"
+                                                    class="btn dt-button btn-outline-pink waves-effect waves-light">Url`s</a>
+                                                <a href="{{ route('admin.manage-property.edit-property-offerings', ['id' => $prop->id]) }}"
+                                                    class="btn dt-button btn-outline-purple waves-effect waves-light">Offerings</a>
+                                                <a href="{{ route('admin.manage-property.edit-property-shares', ['id' => $prop->id]) }}"
+                                                    class="btn btn-outline-light dt-button waves-effect waves-light">Shares</a>
+                                                <a href="{{ route('admin.manage-property.edit-property-financial-details', ['id' => $prop->id]) }}"
+                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Financial</a>
+
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

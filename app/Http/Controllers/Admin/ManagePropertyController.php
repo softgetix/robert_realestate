@@ -4,15 +4,21 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminAddPropertyRequest;
+use App\Http\Requests\Admin\UpdatePropertyExtraDetailsRequest;
 use Illuminate\Http\Request;
 use App\Models\PropertyModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\AdminUpdateAddressRequest;
+use App\Http\Requests\Admin\UpdatePropertyAacfRequest;
 use App\Http\Requests\Admin\UpdatePropertyAminitiesRequest;
 use App\Http\Requests\Admin\UpdatePropertyDetailsRequest;
+use App\Http\Requests\Admin\UpdatePropertyFinancialRequest;
 use App\Http\Requests\Admin\UpdatePropertyFloorPlanRequest;
 use App\Http\Requests\Admin\UpdatePropertyMarketRequest;
+use App\Http\Requests\Admin\UpdatePropertyOfferingRequest;
+use App\Http\Requests\Admin\UpdatePropertySharesRequest;
+use App\Http\Requests\Admin\UpdatePropertyUrlRequest;
 
 class ManagePropertyController extends Controller
 {
@@ -269,14 +275,190 @@ class ManagePropertyController extends Controller
         // }
 
         // return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Floorplan updated successfully.');
-    } 
-    
+    }
+
     public function edit_property_extra_details(Request $request, string $id)
     {
         $property = PropertyModel::find($id);
-        $propertyFloorplan = $property->propertyFloorplan;
+        $PropertyExtraDetails = $property->PropertyExtraDetails;
 
-        return view('admin.properties.edit_property_extra_details')->with(['propertyFloorplan' => $propertyFloorplan, 'property_id' => $id]);
+        return view('admin.properties.edit_property_extra_details')->with(['PropertyExtraDetails' => $PropertyExtraDetails, 'property_id' => $id]);
     }
+
+    public function update_property_extra_details(UpdatePropertyExtraDetailsRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $PropertyExtraDetails = $property->PropertyExtraDetails;
+
+        // Check if propertyAddress exists
+        if ($PropertyExtraDetails) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $PropertyExtraDetails->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->PropertyExtraDetails()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-property-aacf', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+    public function edit_property_aacf(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyAacf = $property->propertyAacf;
+
+        return view('admin.properties.edit_property_aacf')->with(['propertyAacf' => $propertyAacf, 'property_id' => $id]);
+    }
+
+    public function update_property_aacf(UpdatePropertyAacfRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyAacf = $property->propertyAacf;
+
+        // Check if propertyAddress exists
+        if ($propertyAacf) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyAacf->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->propertyAacf()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+    public function edit_property_urls(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyUrl = $property->propertyUrl;
+
+        return view('admin.properties.edit_property_url')->with(['propertyUrls' => $propertyUrl, 'property_id' => $id]);
+    }
+
+    public function update_property_urls(UpdatePropertyUrlRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyUrl = $property->propertyUrl;
+
+        // Check if propertyAddress exists
+        if ($propertyUrl) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyUrl->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->propertyUrl()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+
+    public function edit_property_offerings(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyOffering = $property->propertyOffering;
+
+        return view('admin.properties.edit_property_offering')->with(['propertyOffering' => $propertyOffering, 'property_id' => $id]);
+    }
+
+    public function update_property_offerings(UpdatePropertyOfferingRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyOffering = $property->propertyOffering;
+
+        // Check if propertyAddress exists
+        if ($propertyOffering) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyOffering->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->propertyOffering()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+    public function edit_property_shares(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyShare = $property->propertyShare;
+
+        return view('admin.properties.edit_property_shares')->with(['propertyShare' => $propertyShare, 'property_id' => $id]);
+    }
+
+    public function update_property_shares(UpdatePropertySharesRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyShare = $property->propertyShare;
+
+        // Check if propertyAddress exists
+        if ($propertyShare) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyShare->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->propertyShare()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+    public function edit_property_financial_details(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyShare = $property->propertyShare;
+
+        return view('admin.properties.edit_financial_details')->with(['propertyShare' => $propertyShare, 'property_id' => $id]);
+    }
+
+    public function update_property_financial_details(UpdatePropertyFinancialRequest $request, string $id)
+    {
+        $data = $request->validated();
+
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyFinancialDetail = $property->propertyFinancialDetail;
+
+        // Check if propertyAddress exists
+        if ($propertyFinancialDetail) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyFinancialDetail->update($data);
+        } else {
+            // Property address does not exist, create a new record
+            $property->propertyFinancialDetail()->create($data);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+
+
+
+
+
+
+
+
 
 }

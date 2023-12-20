@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\admin\ManagePropertyController;
 use App\Http\Controllers\CustomerController;
@@ -62,7 +61,31 @@ Route::prefix('/admin')->group(function () {
             // edit property extra details
             Route::get('/edit-property-extra-details/{id}', [ManagePropertyController::class, 'edit_property_extra_details'])->name('admin.manage-property.edit-property-extra-details');
 
-            Route::get('/update-property-extra-details/{id}', [ManagePropertyController::class, 'update_property_extra_details'])->name('admin.manage-property.update-property-extra-details');
+            Route::post('/update-property-extra-details/{id}', [ManagePropertyController::class, 'update_property_extra_details'])->name('admin.manage-property.update-property-extra-details');
+            // annunal cash flow
+            Route::get('/edit-property-aacf/{id}', [ManagePropertyController::class, 'edit_property_aacf'])->name('admin.manage-property.edit-property-aacf');
+
+            Route::post('/update-property-aacf/{id}', [ManagePropertyController::class, 'update_property_aacf'])->name('admin.manage-property.update-property-aacf');
+
+            // edit urls
+            Route::get('/edit-property-urls/{id}', [ManagePropertyController::class, 'edit_property_urls'])->name('admin.manage-property.edit-property-urls');
+
+            Route::post('/update-property-urls/{id}', [ManagePropertyController::class, 'update_property_urls'])->name('admin.manage-property.update-property-urls');
+
+            // property offerings 
+            Route::get('/edit-property-offerings/{id}', [ManagePropertyController::class, 'edit_property_offerings'])->name('admin.manage-property.edit-property-offerings');
+
+            Route::post('/update-property-offerings/{id}', [ManagePropertyController::class, 'update_property_offerings'])->name('admin.manage-property.update-property-offerings');
+
+            //property  shares
+            Route::get('/edit-property-shares/{id}', [ManagePropertyController::class, 'edit_property_shares'])->name('admin.manage-property.edit-property-shares');
+
+            Route::post('/update-property-shares/{id}', [ManagePropertyController::class, 'update_property_shares'])->name('admin.manage-property.update-property-shares');
+
+            // financial details 
+            Route::get('/edit-property-financial-details/{id}', [ManagePropertyController::class, 'edit_property_financial_details'])->name('admin.manage-property.edit-property-financial-details');
+
+            Route::post('/update-property-financial-details/{id}', [ManagePropertyController::class, 'update_property_financial_details'])->name('admin.manage-property.update-financial-details');
 
         });
 
