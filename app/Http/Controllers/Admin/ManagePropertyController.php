@@ -10,9 +10,11 @@ use App\Models\PropertyModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\AdminUpdateAddressRequest;
+use App\Http\Requests\Admin\UpdateCalcPresetsRequest;
 use App\Http\Requests\Admin\UpdatePropertyAacfRequest;
 use App\Http\Requests\Admin\UpdatePropertyAminitiesRequest;
 use App\Http\Requests\Admin\UpdatePropertyDetailsRequest;
+use App\Http\Requests\Admin\UpdatePropertyDocumentRequest;
 use App\Http\Requests\Admin\UpdatePropertyFinancialRequest;
 use App\Http\Requests\Admin\UpdatePropertyFloorPlanRequest;
 use App\Http\Requests\Admin\UpdatePropertyMarketRequest;
@@ -237,44 +239,36 @@ class ManagePropertyController extends Controller
 
     public function update_floorplan(UpdatePropertyFloorPlanRequest $request, string $id)
     {
-        // $data = $request->validated();
-        // $property = PropertyModel::find($id);
+        $data = $request->validated();
+        // dd($data);
+        $filteredData = array_filter($data);
+        $property = PropertyModel::find($id);
 
-        // // Retrieve the existing property floorplans
-        // $propertyFloorplans = $property->propertyFloorplan;
+        // Retrieve the existing property address
+        $propertyFloorplan = $property->propertyFloorplan;
+        // $arraykeys = array_keys($filteredData);
+        foreach ($filteredData as $key => $value) {
 
-        // // Check if propertyFloorplans exist
-        // if (!$propertyFloorplans->isEmpty()) {
-        //     foreach ($data as $key => $value) {
-        //         if ($request->hasFile($key)) {
-        //             $existingImagePath = $propertyFloorplans->pluck($key)->first();
+            if ($request->hasFile($key)) {
+                $url = $value->store('floorplan_images', 'public');
+                $newData[] = ['key' => $key, 'value' => $url];
+            }
 
-        //             if ($existingImagePath && Storage::disk('public')->exists($existingImagePath)) {
-        //                 Storage::disk('public')->delete($existingImagePath);
-        //             }
+        }
+        if (!$propertyFloorplan->isEmpty()) {
 
-        //             // Store the new floorplan image
-        //             $url = $request->file($key)->store('floorplan_images', 'public');
-        //             $data[$key] = $url;
-        //         }
-        //     }
+            foreach ($propertyFloorplan as $model) {
+                if (array_key_exists($model->key, $filteredData)) {
 
-        //     // Delete existing floorplans
-        //     $propertyFloorplans->each->delete();
-        // }
-
-        // // Create new floorplans
-        // foreach ($data as $key => $value) {
-        //     if ($request->hasFile($key)) {
-        //         $url = $request->file($key)->store('floorplan_images', 'public');
-        //         $data[$key] = $url;
-        //     }
-
-        //     // Assuming $property->propertyFloorplans()->create($data) is used to create a new floorplan
-        //     $property->propertyFloorplan()->createMany([$key => $data[$key]]);
-        // }
-
-        // return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Floorplan updated successfully.');
+                    Storage::disk('public')->delete($model->value);
+                    $model->delete();
+                }
+            }
+            $property->propertyFloorplan()->createMany($newData);
+        } else {
+            $property->propertyFloorplan()->createMany($newData);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
     }
 
     public function edit_property_extra_details(Request $request, string $id)
@@ -452,13 +446,89 @@ class ManagePropertyController extends Controller
         return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
 
     }
+    public function edit_property_calc_presets(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $calcPreset = $property->calcPreset;
+        // dd($calcPreset);
+
+        return view('admin.properties.edit_property_calc')->with(['calcPreset' => $calcPreset, 'property_id' => $id]);
+    }
 
 
 
 
+    public function update_property_calc_presets(UpdateCalcPresetsRequest $request, string $id)
+    {
+        $data = $request->validated();
+        $filteredData = array_filter($data, function ($value) {
+            return !is_null($value);
+        });
+
+        foreach ($filteredData as $key => $value) {
+            $newData[] = ['key' => $key, 'value' => $value];
+        }
+        // dd($newData);
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $calcPreset = $property->calcPreset;
+
+        // Check if propertyAddress exists
+        if (!$calcPreset->isEmpty()) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $calcPreset->each->delete();
+        }
+        // Property address does not exist, create a new record
+        $property->calcPreset()->createMany($newData);
+
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+
+    public function edit_property_documents(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyDocumentModel = $property->propertyDocumentModel;
+        // dd($calcPreset);
+
+        return view('admin.properties.edit_property_documents')->with(['propertyDocumentModel' => $propertyDocumentModel, 'property_id' => $id]);
+    }
 
 
 
 
+    public function update_property_documents(UpdatePropertyDocumentRequest $request, string $id)
+    {
+        $data = $request->validated();
+        $filteredData = array_filter($data);
+        $property = PropertyModel::find($id);
 
+        // Retrieve the existing property address
+        $propertyDocumentModel = $property->propertyDocumentModel;
+        // $arraykeys = array_keys($filteredData);
+        foreach ($filteredData as $key => $value) {
+
+            if ($request->hasFile($key)) {
+                $url = $value->store('property_documents', 'public');
+                $newData[] = ['document_key' => $key, 'document_value' => $url];
+            }
+
+        }
+        if (!$propertyDocumentModel->isEmpty()) {
+            foreach ($propertyDocumentModel as $model) {
+                if (array_key_exists($model->document_key, $filteredData)) {
+
+                    Storage::disk('public')->delete($model->document_value);
+                    $model->delete();
+                }
+            }
+            $property->propertyDocumentModel()->createMany($newData);
+        } else {
+            $property->propertyDocumentModel()->createMany($newData);
+        }
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
 }

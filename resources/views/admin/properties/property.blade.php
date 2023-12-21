@@ -64,8 +64,14 @@
                                                     class="btn btn-outline-light dt-button waves-effect waves-light">Shares</a>
                                                 <a href="{{ route('admin.manage-property.edit-property-financial-details', ['id' => $prop->id]) }}"
                                                     class="btn btn-outline-purple dt-button waves-effect waves-light">Financial</a>
+                                                <a href="{{ route('admin.manage-property.edit-property-calc-presets', ['id' => $prop->id]) }}"
+                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Calc</a><a
+                                                    href="{{ route('admin.manage-property.edit-property-documents', ['id' => $prop->id]) }}"
+                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Documents</a>
 
-                                                
+
+
+
                                             </td>
                                         </tr>
                                     @endforeach

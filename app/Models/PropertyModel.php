@@ -71,6 +71,17 @@ class PropertyModel extends Model
     {
         return $this->hasOne('\App\Models\PropertyShare', 'property_id');
     }
+
+    public function calcPreset(): HasMany
+    {
+        return $this->hasMany('\App\Models\CalcPreset', 'property_id');
+
+    }
+    public function propertyDocumentModel(): HasMany
+    {
+        return $this->hasMany('\App\Models\PropertyDocumentModel', 'property_id');
+
+    }
     public function propertyFinancialDetail(): HasOne
     {
         return $this->hasOne('\App\Models\PropertyFinancialDetail', 'property_id');

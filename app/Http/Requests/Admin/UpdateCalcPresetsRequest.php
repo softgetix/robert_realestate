@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePropertyFloorPlanRequest extends FormRequest
+class UpdateCalcPresetsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,13 @@ class UpdatePropertyFloorPlanRequest extends FormRequest
      */
     public function rules(): array
     {
-        
         return [
-            'floor_plan_1' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'floor_plan_2' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'floor_plan_3' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'calc_preset_1' => 'nullable|numeric',
+            'calc_preset_2' => 'nullable|numeric',
+            'calc_preset_3' => 'nullable|numeric',
+            'calc_preset_4' => 'nullable|numeric',
+            'calc_preset_5' => 'nullable|numeric',
+            'calc_preset_6' => 'nullable|numeric',
         ];
     }
 }

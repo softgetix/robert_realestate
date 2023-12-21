@@ -87,6 +87,17 @@ Route::prefix('/admin')->group(function () {
 
             Route::post('/update-property-financial-details/{id}', [ManagePropertyController::class, 'update_property_financial_details'])->name('admin.manage-property.update-financial-details');
 
+            //calc presets
+            Route::get('/edit-property-calc-presets/{id}', [ManagePropertyController::class, 'edit_property_calc_presets'])->name('admin.manage-property.edit-property-calc-presets');
+
+            Route::post('/update-property-calc-presets/{id}', [ManagePropertyController::class, 'update_property_calc_presets'])->name('admin.manage-property.update-calc-presets');
+            // edit property documents
+            Route::get('/edit-property-documents/{id}', [ManagePropertyController::class, 'edit_property_documents'])->name('admin.manage-property.edit-property-documents');
+
+            Route::post('/update-property-documents/{id}', [ManagePropertyController::class, 'update_property_documents'])->name('admin.manage-property.update-property-documents');
+
+
+
         });
 
 

@@ -40,7 +40,7 @@
                                         <label for="example-text-input" class="col-sm-2 col-form-label">Floor Plan 3
                                         </label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" type="file" required name="floor_plan_1"
+                                            <input class="form-control" type="file" required name="floor_plan_3"
                                                 accept="image/*" id="example-text-input">
 
                                         </div>
