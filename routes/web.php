@@ -95,6 +95,10 @@ Route::prefix('/admin')->group(function () {
             Route::get('/edit-property-documents/{id}', [ManagePropertyController::class, 'edit_property_documents'])->name('admin.manage-property.edit-property-documents');
 
             Route::post('/update-property-documents/{id}', [ManagePropertyController::class, 'update_property_documents'])->name('admin.manage-property.update-property-documents');
+            // edit property taxes
+            Route::get('/edit-property-taxes/{id}', [ManagePropertyController::class, 'edit_property_taxes'])->name('admin.manage-property.edit-property-taxes');
+
+            Route::post('/update-property-taxes/{id}', [ManagePropertyController::class, 'update_property_taxes'])->name('admin.manage-property.update-property-taxes');
 
 
 

@@ -87,10 +87,4 @@ class PropertyModel extends Model
         return $this->hasOne('\App\Models\PropertyFinancialDetail', 'property_id');
     }
 
-
-
-    public function propertyDocument(): HasMany
-    {
-        return $this->hasMany('\App\Models\PropertyTaxModel', 'property_id');
-    }
 }

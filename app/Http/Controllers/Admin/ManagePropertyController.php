@@ -20,6 +20,7 @@ use App\Http\Requests\Admin\UpdatePropertyFloorPlanRequest;
 use App\Http\Requests\Admin\UpdatePropertyMarketRequest;
 use App\Http\Requests\Admin\UpdatePropertyOfferingRequest;
 use App\Http\Requests\Admin\UpdatePropertySharesRequest;
+use App\Http\Requests\Admin\UpdatePropertyTaxesRequest;
 use App\Http\Requests\Admin\UpdatePropertyUrlRequest;
 
 class ManagePropertyController extends Controller
@@ -454,10 +455,6 @@ class ManagePropertyController extends Controller
 
         return view('admin.properties.edit_property_calc')->with(['calcPreset' => $calcPreset, 'property_id' => $id]);
     }
-
-
-
-
     public function update_property_calc_presets(UpdateCalcPresetsRequest $request, string $id)
     {
         $data = $request->validated();
@@ -496,9 +493,6 @@ class ManagePropertyController extends Controller
         return view('admin.properties.edit_property_documents')->with(['propertyDocumentModel' => $propertyDocumentModel, 'property_id' => $id]);
     }
 
-
-
-
     public function update_property_documents(UpdatePropertyDocumentRequest $request, string $id)
     {
         $data = $request->validated();
@@ -531,4 +525,43 @@ class ManagePropertyController extends Controller
         return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
 
     }
+    public function edit_property_taxes(Request $request, string $id)
+    {
+        $property = PropertyModel::find($id);
+        $propertyTax = $property->propertyTax;
+        return view('admin.properties.edit_property_taxes')->with(['propertyTax' => $propertyTax, 'property_id' => $id]);
+    }
+
+
+    public function update_property_taxes(UpdatePropertyTaxesRequest $request, string $id)
+    {
+        $data = $request->validated();
+        $filteredData = array_filter($data, function ($value) {
+            return !is_null($value);
+        });
+
+        foreach ($filteredData as $key => $value) {
+            $newData[] = ['tax_key' => $key, 'tax_value' => $value];
+        }
+        // dd($newData);
+        $property = PropertyModel::find($id);
+
+        // Retrieve the existing property address
+        $propertyTax = $property->propertyTax;
+
+        // Check if propertyAddress exists
+        if (!$propertyTax->isEmpty()) {
+            // dd($data);
+            // Property address exists, update the existing record
+            $propertyTax->each->delete();
+        }
+        // Property address does not exist, create a new record
+        $property->propertyTax()->createMany($newData);
+
+        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+
+    }
+
+
+
 }
