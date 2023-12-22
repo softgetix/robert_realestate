@@ -5,7 +5,7 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('dashboard') }}">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">
                             <i class="dripicons-device-desktop me-2"></i>Dashboard
                         </a>
                     </li>
@@ -69,7 +69,7 @@
         <div class="page-title-content">
             <div class="row align-items-center">
                 <div class="col-sm-6">
-                    <h4>@@pagetitle</h4>
+                    <h4>{{$pagetitle ?? 'Page title'}}</h4>
                 </div>
 
                 <div class="col-sm-6">

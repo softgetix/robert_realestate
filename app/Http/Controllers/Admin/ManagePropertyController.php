@@ -19,6 +19,7 @@ use App\Http\Requests\Admin\UpdatePropertyFinancialRequest;
 use App\Http\Requests\Admin\UpdatePropertyFloorPlanRequest;
 use App\Http\Requests\Admin\UpdatePropertyMarketRequest;
 use App\Http\Requests\Admin\UpdatePropertyOfferingRequest;
+use App\Http\Requests\Admin\UpdatePropertyRequest;
 use App\Http\Requests\Admin\UpdatePropertySharesRequest;
 use App\Http\Requests\Admin\UpdatePropertyTaxesRequest;
 use App\Http\Requests\Admin\UpdatePropertyUrlRequest;
@@ -33,7 +34,7 @@ class ManagePropertyController extends Controller
         $property = PropertyModel::all();
 
         // $data['property'] = $property;
-        return view('admin.properties.property')->with(compact('property'));
+        return view('admin.properties.properties')->with(compact('property'));
     }
 
     /**
@@ -75,7 +76,11 @@ class ManagePropertyController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $property = PropertyModel::with('propertyImage', 'propertyFloorplan', 'propertyDocumentModel')->find($id);
+        // dd($property);
+        $pagetitle = $property->name;
+        return view('admin.properties.property')->with(['property' => $property, 'pagetitle' => $pagetitle]);
     }
 
     /**
@@ -83,15 +88,36 @@ class ManagePropertyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $property = PropertyModel::find($id);
+        return view('admin.properties.edit_properties')->with(['property' => $property, 'property_id' => $id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePropertyRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $property = PropertyModel::find($id);
+        if ($property) {
+            $property->update($data);
+        } else {
+            return;
+        }
+
+        // Handle file uploads
+        if ($request->hasFile('property_images')) {
+            foreach ($request->file('property_images') as $file) {
+                $url = $file->store('property_images', 'public');
+                $files[] = ['property_image_key' => 'property_image', 'property_image_value' => $url];
+            }
+        }
+
+        if (!empty($files)) {
+            $property->propertyImage()->createMany($files);
+        }
+
+        return redirect()->back()->with('success', 'Property updated successfully.');
     }
 
     /**
@@ -99,7 +125,13 @@ class ManagePropertyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $property = PropertyModel::find($id);
+
+        if ($property) {
+            $property->delete(); // Soft delete the entry
+        }
+
+        return redirect()->back()->with('success', 'Property deleted successfully');
     }
 
     public function edit_address(Request $request, string $id)
@@ -152,7 +184,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyDetails()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-amenities', ['id' => $id]))->with('success', 'details updated successfully.');
 
     }
 
@@ -225,7 +257,7 @@ class ManagePropertyController extends Controller
 
             $property->MarketDetails()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Market updated successfully.');
+        return redirect(route('admin.manage-property.edit-floorplan', ['id' => $id]))->with('success', 'Market updated successfully.');
 
 
 
@@ -269,7 +301,7 @@ class ManagePropertyController extends Controller
         } else {
             $property->propertyFloorplan()->createMany($newData);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-extra-details', ['id' => $id]))->with('success', 'Floor Plan updated successfully.');
     }
 
     public function edit_property_extra_details(Request $request, string $id)
@@ -298,7 +330,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->PropertyExtraDetails()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-property-aacf', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-aacf', ['id' => $id]))->with('success', 'Extra Details updated successfully.');
 
     }
     public function edit_property_aacf(Request $request, string $id)
@@ -327,7 +359,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyAacf()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-urls', ['id' => $id]))->with('success', 'AACF updated successfully.');
 
     }
     public function edit_property_urls(Request $request, string $id)
@@ -356,7 +388,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyUrl()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-offerings', ['id' => $id]))->with('success', 'URL`s updated successfully.');
 
     }
 
@@ -386,7 +418,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyOffering()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-shares', ['id' => $id]))->with('success', 'Offerings updated successfully.');
 
     }
     public function edit_property_shares(Request $request, string $id)
@@ -415,7 +447,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyShare()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-financial-details', ['id' => $id]))->with('success', 'Shares updated successfully.');
 
     }
     public function edit_property_financial_details(Request $request, string $id)
@@ -444,7 +476,7 @@ class ManagePropertyController extends Controller
             // Property address does not exist, create a new record
             $property->propertyFinancialDetail()->create($data);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-calc-presets', ['id' => $id]))->with('success', 'Financial details updated successfully.');
 
     }
     public function edit_property_calc_presets(Request $request, string $id)
@@ -480,7 +512,7 @@ class ManagePropertyController extends Controller
         // Property address does not exist, create a new record
         $property->calcPreset()->createMany($newData);
 
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-documents', ['id' => $id]))->with('success', 'Calc Presets updated successfully.');
 
     }
 
@@ -522,7 +554,7 @@ class ManagePropertyController extends Controller
         } else {
             $property->propertyDocumentModel()->createMany($newData);
         }
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property.edit-property-taxes', ['id' => $id]))->with('success', 'Documents updated successfully.');
 
     }
     public function edit_property_taxes(Request $request, string $id)
@@ -558,7 +590,7 @@ class ManagePropertyController extends Controller
         // Property address does not exist, create a new record
         $property->propertyTax()->createMany($newData);
 
-        return redirect(route('admin.manage-property.edit-details', ['id' => $id]))->with('success', 'Address updated successfully.');
+        return redirect(route('admin.manage-property'))->with('success', 'Taxes updated successfully.');
 
     }
 

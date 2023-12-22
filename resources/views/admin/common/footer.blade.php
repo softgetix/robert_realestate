@@ -167,7 +167,33 @@
 <!-- Datatable init js -->
 <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('assets/libs/alertify.js/js/alertify.js') }}"></script>
 
+@if (session('success'))
+    <script>
+        var message = "{{ session('success') }}";
+        alertify.success(message);
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        var errorMessage = "{{ session('error') }}";
+        alertify.error(errorMessage);
+    </script>
+@endif  
+@if ($errors->any())
+<script>
+    alertify.error("Validation error. Please check the form for errors.");
+
+    var errorMessages = [];
+    @foreach ($errors->all() as $error)
+        errorMessages.push("{{ $error }}");
+    @endforeach
+
+    alertify.alert(errorMessages.join('<br>'));
+</script>
+@endif
 </body>
 
 </html>

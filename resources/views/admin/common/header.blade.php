@@ -28,10 +28,10 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
         rel="stylesheet" type="text/css" />
-        <link href="{{ asset('assets/css/admin-custom.css') }}"
-        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/admin-custom.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <link href="{{ asset('assets/libs/alertify.js/css/alertify.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 

@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('availability', 255);
             $table->longText('description');
             $table->string('management_company', 255);
+            $table->softDeletes();
 
             $table->timestamps();
         });

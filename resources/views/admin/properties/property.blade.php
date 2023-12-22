@@ -1,98 +1,122 @@
-@include('admin.common.header')
-@include('admin.common.sidebar')
+@extends('admin.common.page')
+@section('content')
+    <div class="main-content">
 
-<!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
+        <div class="page-content">
+            <div class="container-fluid">
 
-<div class="main-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
 
-    <div class="page-content">
-        <div class="container-fluid">
-            <a href="{{ route('manage-property.create') }}"><button type="button"
-                    class="btn btn-primary waves-effect waves-light">
-                    ADD PROPERTY</button></a>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Availability</th>
-                                        <th>Description</th>
-                                        <th>Management Company</th>
-                                        <th>Action</th>
+                                <h4 class="card-title">Property Images</h4>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($property as $prop)
-                                        <tr>
-                                            <td> {{ $prop->id }}</td>
-                                            <td>{{ $prop->availability }}</td>
-                                            <td>{{ $prop->name }}</td>
-                                            <td>{{ $prop->description }}</td>
-                                            <td>{{ $prop->management_company }}</td>
-                                            <td>
+                                <div>
+                                    @foreach ($property->propertyImage as $image)
+                                        @if (!$image->property_image_key == 'property_image')
+                                            @continue
+                                        @endif
 
 
-                                                <a href="{{ route('admin.manage-property.edit-address', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-primary waves-effect waves-light dt-button">Address</a>
-                                                <a href="{{ route('admin.manage-property.edit-details', ['id' => $prop->id]) }}"
-                                                    class="dt-button btn btn-outline-secondary waves-effect">Details</a>
-                                                <a href="{{ route('admin.manage-property.edit-amenities', ['id' => $prop->id]) }}"
-                                                    class="dt-button btn btn-outline-success waves-effect waves-light">Amenities</a>
-                                                <a href="{{ route('admin.manage-property.edit-market', ['id' => $prop->id]) }}"
-                                                    class="dt-button btn btn-outline-info waves-effect waves-light">Market</a>
-                                                <a href="{{ route('admin.manage-property.edit-floorplan', ['id' => $prop->id]) }}"
-                                                    class="dt-button btn btn-outline-warning waves-effect waves-light">Floorplan</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-extra-details', ['id' => $prop->id]) }}"
-                                                    class="btn dt-button btn-outline-danger waves-effect waves-light">Extra
-                                                    Details</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-aacf', ['id' => $prop->id]) }}"
-                                                    class="btn dt-button btn-outline-dark waves-effect waves-light">AACF</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-urls', ['id' => $prop->id]) }}"
-                                                    class="btn dt-button btn-outline-pink waves-effect waves-light">Url`s</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-offerings', ['id' => $prop->id]) }}"
-                                                    class="btn dt-button btn-outline-purple waves-effect waves-light">Offerings</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-shares', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-light dt-button waves-effect waves-light">Shares</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-financial-details', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Financial</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-calc-presets', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Calc</a>
-                                                <a href="{{ route('admin.manage-property.edit-property-documents', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Documents</a><a
-                                                    href="{{ route('admin.manage-property.edit-property-taxes', ['id' => $prop->id]) }}"
-                                                    class="btn btn-outline-purple dt-button waves-effect waves-light">Taxes</a>
-
-
-
-
-
-
-
-                                            </td>
-                                        </tr>
+                                        <a target="_blank" href="{{ asset('storage') . '/' . $image->property_image_value }}">
+                                            <img class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;"
+                                                src="{{ asset('storage') . '/' . $image->property_image_value }}"
+                                                data-holder-rendered="true"> </a>
                                     @endforeach
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Property FloorPlan</h4>
+
+                                <div>
+                                    @foreach ($property->propertyFloorplan as $image)
+                                        <a target="_blank" href="{{ asset('storage') . '/' . $image->value }}">
+                                            <img class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;"
+                                                src="{{ asset('storage') . '/' . $image->value }}"
+                                                data-holder-rendered="true"> </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Property FloorPlan</h4>
+
+                                <div>
+                                    @foreach ($property->propertyDocumentModel as $image)
+                                        <a target="_blank" href="{{ asset('storage/' . $image->document_value) }}" class="text-primary">
+                                            @php echo ucfirst(str_replace('_', ' ', $image->document_key)) @endphp
+                                        </a> |
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Image Rounded & Circle</h4>
+                                <p class="card-title-desc">Use classes
+                                    <code>.rounded</code> and <code>.rounded-circle avatar-md</code>.
+                                </p>
+
+                                <div>
+                                    <img class="rounded me-2" alt="200x200" style="width: 200px;"
+                                        src="assets/images/small/img-4.jpg" data-holder-rendered="true">
+                                    <img class="rounded-circle avatar-md mt-sm-0 mt-3" alt="200x200"
+                                        src="assets/images/users/avatar-4.jpg" data-holder-rendered="true">
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+
+                    {{-- <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Responsive images</h4>
+                                <p class="card-title-desc">Images in Bootstrap are made responsive with <code
+                                        class="highlighter-rouge">.img-fluid</code>. <code
+                                        class="highlighter-rouge">max-width: 100%;</code> and <code
+                                        class="highlighter-rouge">height: auto;</code> are applied to the image so that
+                                    it scales with the parent element.</p>
+
+                                <div>
+                                    <img src="assets/images/small/img-2.jpg" class="img-fluid" alt="Responsive image">
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                </div>
+                <!-- end row -->
+
+                {{-- <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Aligning images</h4>
+                                <p class="card-title-desc">Align images with the helper float classes or text alignment
+                                    classes. block-level images can be centered using the .mx-auto margin utility class.
+                                </p>
+                                <img src="assets/images/small/img-8.jpg" class="img-fluid rounded float-start"
+                                    style="width: 300px; height: auto;" alt="...">
+                                <img src="assets/images/small/img-9.jpg" class="img-fluid rounded float-end mt-sm-0 mt-3"
+                                    style="width: 300px; height: auto;" alt="...">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- end col -->
+                </div> --}}
+
             </div>
-            <!-- end row -->
-
+            <!-- container-fluid -->
         </div>
-        <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
-
-    @include('admin.common.footer')
+        <!-- End Page-content -->
+    @endsection
