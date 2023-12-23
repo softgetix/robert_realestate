@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\admin\ManagePropertyController;
+use App\Http\Controllers\Admin\ManagePropertyController;
 use App\Http\Controllers\CustomerController;
 
 /*
