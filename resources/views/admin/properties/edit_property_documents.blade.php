@@ -7,7 +7,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">PROPERTY Calc Presets</h4>
+                                <h4 class="card-title">PROPERTY Documents</h4>
                                 <form class="row needs-validation"
                                     action="{{ route('admin.manage-property.update-property-documents', ['id' => $property_id]) }}"
                                     method="post" enctype="multipart/form-data">

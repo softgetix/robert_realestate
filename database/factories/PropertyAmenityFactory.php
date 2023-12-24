@@ -18,6 +18,7 @@ class PropertyAmenityFactory extends Factory
     {
         return [
             //
+            'property_amenities' =>  $this->faker->name
         ];
     }
 }

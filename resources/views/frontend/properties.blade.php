@@ -10,6 +10,8 @@
             </div>
         </div>
         <div class="row">
+            @foreach ( $properties as $property )
+            {{dd($property->toArray())}}
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card" style="width:100%">
                     <div class="card-image">
@@ -31,8 +33,10 @@
                         </div> 
                     </div>
                 </div>
-            </div> 
-            <div class="col-12 col-sm-6 col-md-4">
+            </div>     
+            @endforeach
+            
+            {{-- <div class="col-12 col-sm-6 col-md-4">
                 <div class="card" style="width:100%">
                     <div class="card-image">
                         <img class="card-img-top" src="http://localhost/robert_realestate/public/front/images/property.jpg" alt="Card image">
@@ -141,7 +145,7 @@
                         </div>    
                     </div>
                 </div>
-            </div>             
+            </div>              --}}
         </div>
     </div>
 </section>

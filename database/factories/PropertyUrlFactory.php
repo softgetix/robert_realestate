@@ -17,7 +17,13 @@ class PropertyUrlFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'google_map' => $this->faker->url,
+            'zillow' => $this->faker->url,
+            'airbnb' => $this->faker->url,
+            'vrbo' => $this->faker->url,
+            'alt_listing_1' => $this->faker->url,
+            'alt_listing_2' => $this->faker->url,
+            'alt_listing_3' => $this->faker->url,
         ];
     }
 }

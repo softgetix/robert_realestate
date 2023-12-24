@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
-            $table->string('address_1',255);
-            $table->string('address_2',255);
-            $table->string('city',112);
-            $table->string('state',112);
-            $table->integer('zip');
+            $table->string('address_1', 255);
+            $table->string('address_2', 255);
+            $table->string('city', 112);
+            $table->string('state', 112);
+            $table->string('zip', 255);
             $table->timestamps();
         });
     }

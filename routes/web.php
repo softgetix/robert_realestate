@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ManagePropertyController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CustomerController;
 
 /*
@@ -99,30 +100,10 @@ Route::prefix('/admin')->group(function () {
             Route::get('/edit-property-taxes/{id}', [ManagePropertyController::class, 'edit_property_taxes'])->name('admin.manage-property.edit-property-taxes');
 
             Route::post('/update-property-taxes/{id}', [ManagePropertyController::class, 'update_property_taxes'])->name('admin.manage-property.update-property-taxes');
-
-
-
         });
-
-
-
-
-
-
-
-
-
-
     });
 });
 
-
-
-
-
-
 Route::get('/register', [CustomerController::class, 'index']);
-Route::get('/invest', [CustomerController::class, 'investor'])->name('properties');
-
+Route::get('/invest', [ApplicationController::class, 'invest'])->name('properties.invest');
 Route::get('/property_singlepage', [CustomerController::class, 'property_singlepage']);
-

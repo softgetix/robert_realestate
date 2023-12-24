@@ -17,7 +17,8 @@ class CalcPresetFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'key' => 'calc_preset_1',
+            'value' => $this->faker->name,
         ];
     }
 }
